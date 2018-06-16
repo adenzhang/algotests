@@ -1,0 +1,3 @@
+[submodule "external/ftl"]
+	path = external/ftl
+	url = https://github.com/adenzhang/ftl.git
