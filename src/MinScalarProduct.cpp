@@ -3,7 +3,6 @@
 #include <ftl/catch.hpp>
 #endif
 
-#define TEST_MODE
 #ifdef TEST_MODE
 #include <ftl/container_serialization.h>
 #endif
@@ -127,4 +126,5 @@ int main()
 {
     MinScalarProduct sln;
     sln.main();
+    return 0;
 }
