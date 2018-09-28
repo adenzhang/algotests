@@ -126,5 +126,4 @@ int main()
 {
     MinScalarProduct sln;
     sln.main();
-    return 0;
 }

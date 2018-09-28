@@ -73,7 +73,7 @@ file(GLOB SRC
 #    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
 
-add_subdirectory(external/ftl/src)
+add_subdirectory(external/ftl)
 add_subdirectory(src)
 
 
