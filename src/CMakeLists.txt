@@ -75,9 +75,10 @@ include_directories(${INCLUDES})
 file(GLOB SRC
 	#    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
         # include app.cpp if defined UNITTEST_MODE
-        ${CMAKE_CURRENT_SOURCE_DIR}/app.cpp
+        app.cpp
 #        ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/MinScalarProduct.cpp
+#        MinScalarProduct.cpp
+        ShortestSubarrayWithSumAtLeastK.cpp
 )
 
 add_executable( ${PROJNAME} ${SRC} )
