@@ -16,6 +16,7 @@
 #include <ctime>
 #include <deque>
 #include <fstream>
+#include <ftl/circular_queue.h>
 #include <ftl/out_printer.h>
 #include <iostream>
 #include <limits>
@@ -101,7 +102,8 @@ public:
             return -1;
         if (K <= 0)
             return 0;
-        std::deque<Sum> q;
+        //        std::deque<Sum> q;
+        circular_queue<Sum> q(A.size());
         int w = -1; // min width
         int s = 0; // sum including current element
         int* b = &A.front(); // begin of window
@@ -158,10 +160,6 @@ int main()
 {
     ShortestSubarrayWithSumAtLeastK::Solution sln;
     {
-        IntVector a{ 31, 63, -38, 43, 65, 74, 90, -23, 45, 22 };
-        REQUIRE(sln.shortestSubarray(a, 341) == 9);
-    }
-    {
         IntVector a{ 1 };
         REQUIRE(sln.shortestSubarray(a, 1) == 1);
     }
@@ -172,6 +170,10 @@ int main()
     {
         IntVector a{ 2, -1, 2 };
         REQUIRE(sln.shortestSubarray(a, 3) == 3);
+    }
+    {
+        IntVector a{ 31, 63, -38, 43, 65, 74, 90, -23, 45, 22 };
+        REQUIRE(sln.shortestSubarray(a, 341) == 9);
     }
     {
         IntVector a{ 77, 19, 35, 10, -14 };
