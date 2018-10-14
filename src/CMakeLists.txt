@@ -66,24 +66,24 @@ if( NOT WIN32 )
         set(LIBS ${LIBS} -lrt -lpthread)
 endif()
 
-set(INCLUDES ${INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set(INCLUDES ${INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR}/src ${CMAKE_CURRENT_SOURCE_DIR}/../external/ftl/src)
 
 message("- INCLUDES dirs: ${INCLUDES}")
 
-include_directories(${INCLUDES})
+include_directories(${INCLUDES} )
 
 file(GLOB SRC
 	#    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
         # include app.cpp if defined UNITTEST_MODE
         app.cpp
-#        ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
+        ReversePair.cpp
 #        MinScalarProduct.cpp
-        ShortestSubarrayWithSumAtLeastK.cpp
+#        ShortestSubarrayWithSumAtLeastK.cpp
 )
 
 add_executable( ${PROJNAME} ${SRC} )
 
-target_link_libraries( ${PROJNAME} ${LIBS} libftl )
+target_link_libraries( ${PROJNAME} ${LIBS} try_catch )
 
 
 #-----------------------------------------------
