@@ -78,7 +78,8 @@ file(GLOB SRC
         app.cpp
 #        ReversePair.cpp
 #        DIStringMatch.cpp
-        LargestRectangleArea.cpp
+#        LargestRectangleArea.cpp
+        DistinctSubsequencesII.cpp
 #        *.cpp
 #        MinScalarProduct.cpp
 #        ShortestSubarrayWithSumAtLeastK.cpp
