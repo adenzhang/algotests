@@ -24,25 +24,24 @@ Note
 Please merge the adjacent outlines if they have the same height and make sure different outlines cant overlap on x-axis.
 
 */
-#include <vector>
+#include <algorithm>
+#include <cctype>
+#include <fstream>
+#include <iostream>
+#include <list>
 #include <map>
 #include <set>
-#include <list>
-#include <vector>
+#include <sstream>
 #include <unordered_map>
 #include <utility>
-#include <algorithm>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <cctype>
+#include <vector>
 
 #include <ftl/container_serialization.h>
 
 using namespace std;
 using namespace ftl::serialization;
 
-extern std::vector<std::vector<int> > a_15_in;
+extern std::vector<std::vector<int>> a_15_in;
 
 namespace BuildingOutline {
 
@@ -53,8 +52,14 @@ public:
         int x;
         int y;
         int isStart;
-        SegPoint(int x=0, int y=0, int start=0):x(x), y(y), isStart(start) {}
-        SegPoint& operator=(const SegPoint& p) {
+        SegPoint(int x = 0, int y = 0, int start = 0)
+            : x(x)
+            , y(y)
+            , isStart(start)
+        {
+        }
+        SegPoint& operator=(const SegPoint& p)
+        {
             x = p.x;
             y = p.y;
             isStart = p.isStart;
@@ -62,13 +67,15 @@ public:
         }
     };
     struct PointLessByX {
-    bool operator()(const SegPoint& a, const SegPoint& b) {
-        return a.x < b.x;
-    }
+        bool operator()(const SegPoint& a, const SegPoint& b) const
+        {
+            return a.x < b.x;
+        }
     };
     typedef multiset<SegPoint, PointLessByX> PointSetX;
 
-    void pushOutline(vector<vector<int> > &b, int start, int end, int height) {
+    void pushOutline(vector<vector<int>>& b, int start, int end, int height)
+    {
         vector<int> p(3);
         p[0] = start;
         p[1] = end;
@@ -79,40 +86,41 @@ public:
      * @param buildings: A list of lists of integers
      * @return: Find the outline of those buildings
      */
-    vector<vector<int> > buildingOutline(vector<vector<int> > &buildings) {
+    vector<vector<int>> buildingOutline(vector<vector<int>>& buildings)
+    {
         // write your code here
-        typedef map<int ,int> IntIntMap;
+        typedef map<int, int> IntIntMap;
         IntIntMap pending; // <hight, count>
         PointSetX points;
-        vector<vector<int> > outline;
+        vector<vector<int>> outline;
         // construct point set in order
-        for(size_t i=0; i< buildings.size(); ++i) {
+        for (size_t i = 0; i < buildings.size(); ++i) {
             vector<int>& seg = buildings[i];
             points.insert(SegPoint(seg[0], seg[2], 1));
             points.insert(SegPoint(seg[1], seg[2], 0));
         }
         // find outline from point set
         SegPoint startP;
-        for(PointSetX::iterator it=points.begin(), itUpp=points.begin(); it!=points.end();) {
+        for (PointSetX::iterator it = points.begin(), itUpp = points.begin(); it != points.end();) {
             bool isEmpty = pending.empty();
-            PointSetX::iterator i=it;
-            for(; i->x ==it->x && i!=points.end(); ++i) {
-                pending[i->y] += i->isStart? 1: (-1);
+            PointSetX::iterator i = it;
+            for (; i->x == it->x && i != points.end(); ++i) {
+                pending[i->y] += i->isStart ? 1 : (-1);
             }
-            for(IntIntMap::iterator i=pending.begin(); i!=pending.end();) {
-                if( i->second <= 0 ) {
+            for (IntIntMap::iterator i = pending.begin(); i != pending.end();) {
+                if (i->second <= 0) {
                     IntIntMap::iterator i2 = i;
                     ++i;
                     pending.erase(i2);
-                }else{
+                } else {
                     ++i;
                 }
             }
-            if( pending.empty() ) {
+            if (pending.empty()) {
                 pushOutline(outline, startP.x, it->x, startP.y);
-            }else if( isEmpty ) {
+            } else if (isEmpty) {
                 startP = SegPoint(it->x, pending.rbegin()->first, 1);
-            }else if( startP.y != pending.rbegin()->first ) {
+            } else if (startP.y != pending.rbegin()->first) {
                 pushOutline(outline, startP.x, it->x, startP.y);
                 startP = SegPoint(it->x, pending.rbegin()->first, 1);
             }
@@ -122,9 +130,10 @@ public:
     }
 };
 typedef vector<int> IntVec;
-typedef vector<vector<int> > IntVecVec;
-void test() {
-	/*
+typedef vector<vector<int>> IntVecVec;
+void test()
+{
+    /*
 	 * Input
 [[1,5,9],[2,10,3],[7,14,9],[12,18,3],[16,20,9],[20,25,19],[22,31,7]]
 Output
@@ -133,20 +142,19 @@ Expected
 [[1,5,9],[5,7,3],[7,14,9],[14,16,3],[16,20,9],[20,25,19],[25,31,7]]
 	 */
 
-
-	IntVecVec a; //= {{1,5,9},{2,10,3},{7,14,9},{12,18,3},{16,20,9},{20,25,19},{22,31,7}};
-	string text = "[[1,5,9],[2,10,3],[7,14,9],[12,18,3],[16,20,9],[20,25,19],[22,31,7]]";
-	istringstream ss(text);
-	ifstream ifs("15.in");
-	ofstream ofs("15.out");
-	ifs >> a;
-	Solution sln;
-	IntVecVec b = sln.buildingOutline(a);
-	ofs << b;
+    IntVecVec a; //= {{1,5,9},{2,10,3},{7,14,9},{12,18,3},{16,20,9},{20,25,19},{22,31,7}};
+    string text = "[[1,5,9],[2,10,3],[7,14,9],[12,18,3],[16,20,9],[20,25,19],[22,31,7]]";
+    istringstream ss(text);
+    ifstream ifs("15.in");
+    ofstream ofs("15.out");
+    ifs >> a;
+    Solution sln;
+    IntVecVec b = sln.buildingOutline(a);
+    ofs << b;
 }
 } // BuildingOutline
 int main_BuildingOutline()
 {
-	BuildingOutline::test();
+    BuildingOutline::test();
     return 0;
 }

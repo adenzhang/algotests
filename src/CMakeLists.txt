@@ -76,7 +76,10 @@ file(GLOB SRC
 	#    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
         # include app.cpp if defined UNITTEST_MODE
         app.cpp
-        ReversePair.cpp
+#        ReversePair.cpp
+#        DIStringMatch.cpp
+        LargestRectangleArea.cpp
+#        *.cpp
 #        MinScalarProduct.cpp
 #        ShortestSubarrayWithSumAtLeastK.cpp
 )
