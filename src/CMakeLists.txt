@@ -84,7 +84,8 @@ file(GLOB SRC
 #        LargestComponentSize.cpp
 #        MinScalarProduct.cpp
 #        ShortestSubarrayWithSumAtLeastK.cpp
-        SwimInWater.cpp
+#        SwimInWater.cpp
+        LongestConsecutive.cpp
 )
 
 add_executable( ${PROJNAME} ${SRC} )
