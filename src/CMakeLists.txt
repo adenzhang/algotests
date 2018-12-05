@@ -81,9 +81,10 @@ file(GLOB SRC
 #        DIStringMatch.cpp
 #        LargestRectangleArea.cpp
 #        DistinctSubsequencesII.cpp
-        LargestComponentSize.cpp
+#        LargestComponentSize.cpp
 #        MinScalarProduct.cpp
 #        ShortestSubarrayWithSumAtLeastK.cpp
+        SwimInWater.cpp
 )
 
 add_executable( ${PROJNAME} ${SRC} )
