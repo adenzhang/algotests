@@ -88,6 +88,94 @@ public:
         }
         return minWidth == INF ? vector<int>{} : vector<int>{ nums[startp.iVec][startp.idx], nums[endp.iVec][endp.idx] };
     }
+
+    bool isAlienSorted(vector<string>& words, string order)
+    {
+        int8_t seq[26];
+        const auto Comp = [&](const string& a, const string& b) -> int {
+            for (auto p = a.c_str(), q = b.c_str(); true; ++p, ++q) {
+                if (!*p)
+                    return *q ? (-1) : 0;
+                if (!*q)
+                    return 1;
+                auto c = seq[(*p) - 'a'] - seq[(*q) - 'a'];
+                if (c != 0)
+                    return c;
+            }
+            return 0;
+        };
+        for (int i = 0; i < 26; ++i)
+            seq[order[i] - 'a'] = i;
+
+        for (size_t i = 1; i < words.size(); ++i)
+            if (Comp(words[i - 1], words[i]) > 0)
+                return false;
+        return true;
+    }
+
+    template <class C, class T>
+    T find_parent(C& par, T i)
+    {
+        if (par[i] != i)
+            par[i] = find_parent(par, i);
+        return par[i];
+    }
+    template <class C, class T>
+    bool union_parent(C& par, T i, T j)
+    {
+        auto p = find_parent(par, i), q = find_parent(par, j);
+        if (p == q)
+            return false;
+        par[p] = q;
+        return true;
+    }
+    //https://leetcode.com/contest/weekly-contest-114/problems/array-of-doubled-pairs/
+    bool canReorderDoubled0(vector<int>& A)
+    {
+        unordered_map<int, size_t> m;
+        int equalPairs = 0;
+        for (auto x : A) {
+            if (m[x * 2] > 0) {
+                ++equalPairs;
+                --m[x * 2];
+            } else if (x % 2 == 0 && m[x / 2] > 0) {
+                ++equalPairs;
+                --m[x / 2];
+            } else {
+                ++m[x];
+            }
+        }
+        return A.size() / 2 == equalPairs;
+    }
+
+    template <class C, class T>
+    void countPairs(C& c, T x, int& n)
+    {
+        if (x == 0) {
+            auto d = c[x] / 2;
+            c[x] -= d * 2;
+            n += d;
+            return;
+        }
+        if (x % 2 == 0 && c[x / 2] > 0)
+            countPairs(c, x / 2, n);
+        auto d = min(c[x], c[x * 2]);
+        c[x] -= d;
+        c[x * 2] -= d;
+        n += d;
+    }
+    bool canReorderDoubled(vector<int>& A)
+    {
+        unordered_map<int, size_t> m; // value: count
+        int n = 0;
+        for (auto x : A) {
+            ++m[x];
+        }
+        for (auto x : A) {
+            countPairs(m, x, n);
+        }
+        return A.size() / 2 == n;
+    }
 };
 TEST_FUNC(SmallestRange_tests)
 {
@@ -96,5 +184,49 @@ TEST_FUNC(SmallestRange_tests)
         vector<vector<int>> A = { { 4, 10, 15, 24, 26 }, { 0, 9, 12, 20 }, { 5, 18, 22, 30 } };
         vector<int> res{ 20, 24 };
         REQUIRE(res == sln.smallestRange(A));
+    }
+    {
+        vector<string> A = { "hello", "leetcode" };
+        REQUIRE(true == sln.isAlienSorted(A, "hlabcdefgijkmnopqrstuvwxyz"));
+    }
+    {
+        vector<string> A = { "word", "world", "row" };
+        REQUIRE(false == sln.isAlienSorted(A, "worldabcefghijkmnpqstuvxyz"));
+    }
+    {
+        vector<string> A = { "apple", "app" };
+        REQUIRE(false == sln.isAlienSorted(A, "abcdefghijklmnopqrstuvwxyz"));
+    }
+    {
+        vector<int> A = { 0, 0, 0, 0, 0 };
+        REQUIRE(true == sln.canReorderDoubled(A));
+    }
+    {
+        vector<int> A = { 0, 0 };
+        REQUIRE(true == sln.canReorderDoubled(A));
+    }
+    {
+        vector<int> A = { 3, 1, 3, 6 };
+        REQUIRE(false == sln.canReorderDoubled(A));
+    }
+    {
+        vector<int> A = { 2, 1, 2, 6 };
+        REQUIRE(false == sln.canReorderDoubled(A));
+    }
+    {
+        vector<int> A = { 4, -2, 2, -4 };
+        REQUIRE(true == sln.canReorderDoubled(A));
+    }
+    {
+        vector<int> A = { 1, 2, 4, 16, 8, 4 };
+        REQUIRE(false == sln.canReorderDoubled(A));
+    }
+    {
+        vector<int> A = { 2, 1, 2, 1, 1, 1, 2, 2 };
+        REQUIRE(true == sln.canReorderDoubled(A));
+    }
+    {
+        vector<int> A = { -1, 4, 6, 8, -4, 6, -6, 3, -2, 3, -3, -8 };
+        REQUIRE(true == sln.canReorderDoubled(A));
     }
 }
