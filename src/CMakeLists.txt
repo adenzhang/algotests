@@ -78,8 +78,8 @@ file(GLOB SRC
         app.cpp
 #        *.cpp
 #        ReversePair.cpp
-#        DIStringMatch.cpp
-#        LargestRectangleArea.cpp
+        DIStringMatch.cpp
+        LargestRectangleArea.cpp
 #        DistinctSubsequencesII.cpp
 #        LargestComponentSize.cpp
 #        MinScalarProduct.cpp
@@ -87,7 +87,8 @@ file(GLOB SRC
 #        SwimInWater.cpp
 #        LongestConsecutive.cpp
 #        SmallestRange.cpp
-         algotest.cpp
+#        IsPeriod.cpp
+        algotest.cpp
 )
 
 add_executable( ${PROJNAME} ${SRC} )
