@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <bitset>
+#include <cassert>
 #include <chrono>
 #include <climits>
 #include <cmath>
@@ -27,7 +28,6 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-
 using namespace std;
 using namespace ftl::serialization;
 
@@ -39,8 +39,9 @@ typedef map<int, int> IntIntTreeMap;
 
 class Solution {
 public:
-    int test(IntVec& A)
+    int leastOpsExpressTarget(int x, int T)
     {
+
         return 0;
     }
 };
@@ -48,7 +49,9 @@ TEST_FUNC(tmp_tests)
 {
     Solution sln;
     {
-        vector<int> A = { 0, 0 };
-        REQUIRE(0 == sln.test(A));
+        REQUIRE(50 == sln.leastOpsExpressTarget(2, 125046)); // 100 * 100 * 100 * 100
+    }
+    {
+        REQUIRE(17 == sln.leastOpsExpressTarget(3, 365)); // 100 * 100 * 100 * 100
     }
 }

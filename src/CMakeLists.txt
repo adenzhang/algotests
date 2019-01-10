@@ -88,6 +88,7 @@ file(GLOB SRC
 #        LongestConsecutive.cpp
 #        SmallestRange.cpp
 #        IsPeriod.cpp
+        LeastOpsExpressTarget.cpp
         algotest.cpp
 )
 
