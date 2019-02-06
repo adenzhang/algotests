@@ -88,9 +88,11 @@ file(GLOB SRC
 #        LongestConsecutive.cpp
 #        SmallestRange.cpp
 #        IsPeriod.cpp
-        LeastOpsExpressTarget.cpp
+#        LeastOpsExpressTarget.cpp
         KthSmallestSumFromSortedArrays.cpp
-        Median2Vectors.cpp
+#        Median2Vectors.cpp
+        MinCameraCover.cpp
+        AllocateBooks.cpp
         algotest.cpp
 )
 
