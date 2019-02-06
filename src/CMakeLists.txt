@@ -89,6 +89,8 @@ file(GLOB SRC
 #        SmallestRange.cpp
 #        IsPeriod.cpp
         LeastOpsExpressTarget.cpp
+        KthSmallestSumFromSortedArrays.cpp
+        Median2Vectors.cpp
         algotest.cpp
 )
 
