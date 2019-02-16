@@ -1,35 +1,5 @@
-#ifdef UNITTEST_MODE
-#define TEST_MODE
-#include <ftl/catch.hpp>
-#endif
+#include <ftl/ftl.h>
 
-#ifdef TEST_MODE
-#include <ftl/container_serialization.h>
-#endif
-
-#include <algorithm>
-#include <bitset>
-#include <climits>
-#include <cmath>
-#include <cstdio>
-#include <cstdlib>
-#include <ctime>
-#include <deque>
-#include <fstream>
-#include <ftl/circular_queue.h>
-#include <ftl/out_printer.h>
-#include <iostream>
-#include <limits>
-#include <list>
-#include <map>
-#include <numeric>
-#include <queue>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
 using namespace std;
 using namespace ftl;
 using namespace ftl::serialization;
@@ -80,7 +50,7 @@ public:
     //             q.pop_front() while sum q[1..end] >= K.
     //             then check if queued subarray or the whole window is min w.
     //    time complexity O(n)
-    int shortestSubarray(vector<int>& A, int K)
+    int shortestSubarray0(vector<int>& A, int K)
     {
         static int* thefirst = nullptr;
         thefirst = &A.front();
@@ -149,14 +119,32 @@ public:
 
         return w;
     }
+
+    // for prefix sum S[i], find min i-j+1, where S[i] >= S[j]+K
+    // maintain an increasing S[i] in q
+    int shortestSubarray(vector<int>& A, int K)
+    {
+        vector<int> S(A.size() + 1, 0); // NOTE: first is 0 IMPORTANT
+        for (size_t i = 0; i < A.size(); ++i)
+            S[i + 1] += S[i] + A[i];
+        deque<size_t> q;
+        q.push_back(0);
+        int minL = S[0] >= K ? 1 : INT_MAX;
+        for (size_t i = 1; i < S.size(); ++i) {
+            auto a = S[i];
+            while (!q.empty() && S[q.back()] >= a) // keep it increasing
+                q.pop_back();
+            while (!q.empty() && a >= S[q.front()] + K) { // move forward j
+                minL = std::min(minL, int(i - q.front())); // j = q.front()
+                q.pop_front();
+            }
+            q.push_back(i);
+        }
+        return minL == INT_MAX ? (-1) : minL;
+    }
 };
 }
-#ifdef UNITTEST_MODE
-TEST_CASE("ShortestSubarrayWithSumAtLeastK_tests", "")
-#else
-int main()
-#endif
-
+TEST_FUNC(ShortestSubarrayWithSumAtLeastK_tests)
 {
     ShortestSubarrayWithSumAtLeastK::Solution sln;
     {

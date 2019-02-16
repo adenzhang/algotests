@@ -83,7 +83,7 @@ file(GLOB SRC
 #        DistinctSubsequencesII.cpp
 #        LargestComponentSize.cpp
 #        MinScalarProduct.cpp
-#        ShortestSubarrayWithSumAtLeastK.cpp
+        ShortestSubarrayWithSumAtLeastK.cpp
 #        SwimInWater.cpp
 #        LongestConsecutive.cpp
 #        SmallestRange.cpp
