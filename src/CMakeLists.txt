@@ -90,6 +90,7 @@ file(GLOB SRC
 #        IsPeriod.cpp
 #        LeastOpsExpressTarget.cpp
         KthSmallestSumFromSortedArrays.cpp
+        NumSquarefulPerms.cpp
 #        Median2Vectors.cpp
         MinCameraCover.cpp
         AllocateBooks.cpp
