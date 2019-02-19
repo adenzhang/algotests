@@ -91,6 +91,7 @@ file(GLOB SRC
 #        LeastOpsExpressTarget.cpp
         KthSmallestSumFromSortedArrays.cpp
         NumSquarefulPerms.cpp
+        NthMagicalNumber.cpp
 #        Median2Vectors.cpp
         MinCameraCover.cpp
         AllocateBooks.cpp
