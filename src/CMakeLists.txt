@@ -83,18 +83,19 @@ file(GLOB SRC
 #        DistinctSubsequencesII.cpp
 #        LargestComponentSize.cpp
 #        MinScalarProduct.cpp
-        ShortestSubarrayWithSumAtLeastK.cpp
+#        ShortestSubarrayWithSumAtLeastK.cpp
 #        SwimInWater.cpp
 #        LongestConsecutive.cpp
 #        SmallestRange.cpp
 #        IsPeriod.cpp
 #        LeastOpsExpressTarget.cpp
-        KthSmallestSumFromSortedArrays.cpp
+#        KthSmallestSumFromSortedArrays.cpp
         NumSquarefulPerms.cpp
         NthMagicalNumber.cpp
+        CreateMaxNumber.cpp
 #        Median2Vectors.cpp
         MinCameraCover.cpp
-        AllocateBooks.cpp
+#        AllocateBooks.cpp
         algotest.cpp
 )
 
