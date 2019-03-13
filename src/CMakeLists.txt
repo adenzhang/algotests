@@ -96,6 +96,7 @@ file(GLOB SRC
 #        Median2Vectors.cpp
         MinCameraCover.cpp
 #        AllocateBooks.cpp
+        CoinPath.cpp
         algotest.cpp
 )
 
