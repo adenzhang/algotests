@@ -11,7 +11,7 @@
         {
             "label": "cmake debug",
             "type": "shell",
-            "command": "cmake -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Debug ${workspaceRoot}",
+            "command": "cmake -G 'Unix Makefiles' -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug ${workspaceRoot}",
             "options": {
                 "cwd": "${workspaceRoot}/../build-algotests-Debug"
             },

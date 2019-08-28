@@ -53,12 +53,13 @@ public:
     }
 
     template<typename ArrT, typename E = typename ArrT::value_type>
-    int longestNoneDescreasing( ArrT &A, const function<int64_t( const E & )> &getH = []( const E &x ) {
-        if constexpr ( is_convertible_v<E, int64_t> )
-            return x;
-        else
-            return 0;
-    } )
+    int longestNoneDescreasing(
+            ArrT &A, const function<int64_t( const E & )> &getH = []( const E &x ) {
+                if constexpr ( is_convertible_v<E, int64_t> )
+                    return x;
+                else
+                    return 0;
+            } )
     {
         using HightT = int64_t;
         auto N = A.size();
@@ -87,12 +88,13 @@ public:
         return distance( b, p );
     }
     template<typename ArrT, typename E = typename ArrT::value_type>
-    int longestIncreasing( ArrT &A, const function<int64_t( const E & )> &getH = []( const E &x ) {
-        if constexpr ( is_convertible_v<E, int64_t> )
-            return x;
-        else
-            return 0;
-    } )
+    int longestIncreasing(
+            ArrT &A, const function<int64_t( const E & )> &getH = []( const E &x ) {
+                if constexpr ( is_convertible_v<E, int64_t> )
+                    return x;
+                else
+                    return 0;
+            } )
     {
         using HightT = int64_t;
         auto N = A.size();
@@ -153,6 +155,12 @@ public:
             for ( auto &x : v )
                 x -= imin;
         return v;
+    }
+    // given "DIDDIII" string of length N, return array A containing all distinct elements from 0 to N.
+    vector<int> smallestDIStringMatch( string S )
+    {
+        // todo
+        return {};
     }
 };
 

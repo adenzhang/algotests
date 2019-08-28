@@ -35,53 +35,6 @@ typedef vector<int> IntVector;
 typedef unordered_map<int, int> IntIntHashMap;
 typedef map<int, int> IntIntTreeMap;
 
-struct A
-{
-    virtual void f()
-    {
-    }
-};
-struct B : virtual A
-{
-    virtual void f()
-    {
-    }
-};
-struct C : virtual A
-{
-    virtual void f()
-    {
-    }
-};
-struct D : B, C
-{
-    virtual void f()
-    {
-    }
-};
-
-class String
-{
-public:
-    explicit String( char )
-    {
-    }
-    String( const char * )
-    {
-    }
-
-private:
-    void operator=( const char * )
-    {
-    }
-};
-int main_app()
-{
-
-    cout << "v:" << sqrt( 5.9 ) << endl;
-    cout << "m:" << sqrt( -4.5 ) << endl;
-    return 0;
-}
 
 #ifdef UNITTEST_MODE
 

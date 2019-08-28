@@ -50,7 +50,7 @@ set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREADED ON)  
 set(Boost_USE_STATIC_RUNTIME OFF) 
 
-add_definitions( -DUNITTEST_MODE -DBOOST_ALL_DYN_LINK -std=c++17)
+add_definitions( -DUNITTEST_MODE -std=c++17)
 #add_definitions( -DTEST_MODE -DBOOST_ALL_DYN_LINK -std=c++17)
 
 LINK_DIRECTORIES(${LIBPATHS})
@@ -76,10 +76,11 @@ file(GLOB SRC
 	#    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
         # include app.cpp if defined UNITTEST_MODE
         app.cpp
+        algotest.cpp
 #        *.cpp
 #        ReversePair.cpp
-        DIStringMatch.cpp
-        LargestRectangleArea.cpp
+#        DIStringMatch.cpp
+#        LargestRectangleArea.cpp
 #        DistinctSubsequencesII.cpp
 #        LargestComponentSize.cpp
 #        MinScalarProduct.cpp
@@ -90,14 +91,15 @@ file(GLOB SRC
 #        IsPeriod.cpp
 #        LeastOpsExpressTarget.cpp
 #        KthSmallestSumFromSortedArrays.cpp
-        NumSquarefulPerms.cpp
-        NthMagicalNumber.cpp
-        CreateMaxNumber.cpp
+#        NumSquarefulPerms.cpp
+#        NthMagicalNumber.cpp
+#        CreateMaxNumber.cpp
 #        Median2Vectors.cpp
-        MinCameraCover.cpp
+#        MinCameraCover.cpp
 #        AllocateBooks.cpp
-        CoinPath.cpp
-        algotest.cpp
+#        CoinPath.cpp
+#        order_limit_check_tests.cpp
+        NthBeautifulNumber.cpp
 )
 
 add_executable( ${PROJNAME} ${SRC} )
