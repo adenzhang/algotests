@@ -4,17 +4,15 @@
 #include <iostream>
 
 using namespace std;
-
+using namespace ftl;
 
 class Solution
 {
 public:
 };
 
-using namespace ftl;
 
-
-TEST_FUNC( tmp_tests )
+ADD_TEST_CASE( tmp_tests )
 {
     // Solution sln;
 }

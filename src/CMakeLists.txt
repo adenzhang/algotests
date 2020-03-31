@@ -1,4 +1,4 @@
-project(algotest)
+project(algotests)
 # cmake -G "Eclipse CDT4 - Unix Makefiles" -D_ECLIPSE_VERSION=4.2 -DCMAKE_BUILD_TYPE=Debug ../build
 cmake_minimum_required( VERSION 2.6 )
 
@@ -75,6 +75,7 @@ include_directories(${INCLUDES} )
 file(GLOB SRC
 	#    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
         # include app.cpp if defined UNITTEST_MODE
+        MinScalarProduct.cpp
         app.cpp
         algotest.cpp
 #        *.cpp
@@ -83,7 +84,6 @@ file(GLOB SRC
 #        LargestRectangleArea.cpp
 #        DistinctSubsequencesII.cpp
 #        LargestComponentSize.cpp
-#        MinScalarProduct.cpp
 #        ShortestSubarrayWithSumAtLeastK.cpp
 #        SwimInWater.cpp
 #        LongestConsecutive.cpp

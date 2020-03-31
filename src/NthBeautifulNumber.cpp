@@ -33,7 +33,7 @@ public:
     }
 };
 
-TEST_FUNC( nth_beautiful_number_tests )
+ADD_TEST_CASE( nth_beautiful_number_tests )
 {
     Solution sln;
     REQUIRE( sln.nth_beautiful_number( 1 ) == 44 );
