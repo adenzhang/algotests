@@ -50,8 +50,9 @@ set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREADED ON)  
 set(Boost_USE_STATIC_RUNTIME OFF) 
 
-add_definitions( -DUNITTEST_MODE -std=c++17)
-#add_definitions( -DTEST_MODE -DBOOST_ALL_DYN_LINK -std=c++17)
+add_definitions(
+    -DUNITTEST_MODE # it must have only one cpp file if DUNITTEST_MODE is not defined.
+    -std=c++17)
 
 LINK_DIRECTORIES(${LIBPATHS})
 
@@ -74,10 +75,10 @@ include_directories(${INCLUDES} )
 
 file(GLOB SRC
 	#    "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
-        # include app.cpp if defined UNITTEST_MODE
+        app.cpp # include app.cpp if defined UNITTEST_MODE
         MinScalarProduct.cpp
-        app.cpp
-        algotest.cpp
+#        app.cpp
+#        algotest.cpp
 #        *.cpp
 #        ReversePair.cpp
 #        DIStringMatch.cpp

@@ -1,5 +1,7 @@
+#ifdef UNITTEST_MODE
 #include <ftl/unittest.h>
 #include <ftl/container_serialization.h>
+#endif
 
 #include <algorithm>
 #include <iostream>
@@ -105,10 +107,14 @@ struct MinScalarProduct
     }
 };
 
+#ifdef UNITTEST_MODE
 ADD_TEST_CASE( MinScalarProduct_tests )
 {
     using namespace ftl;
-    auto redirectin = ftl::make_scoped_stream_redirect( std::cin, R"(2
+    MinScalarProduct sln;
+    SECTION( "basic" )
+    {
+        auto redirectin = ftl::make_scoped_istream_redirect( std::cin, R"(2
                                                                  3
                                                                  1 3 -5
                                                                  -2 4 1
@@ -116,6 +122,20 @@ ADD_TEST_CASE( MinScalarProduct_tests )
                                                                  1 2 3 4 5
                                                                  1 0 1 0 1
                                                                  )"_sl );
+        sln.main();
+    }
+    SECTION( "from small file" )
+    {
+        scoped_stream_redirect_to_file redirectin( std::cin, "data/A-small-practice.in", std::fstream::in );
+        scoped_stream_redirect_to_file redirectout( std::cout, "data/A-small-practice.out", std::fstream::out );
+        sln.main();
+    }
+}
+#else
+int main()
+{
     MinScalarProduct sln;
     sln.main();
+    return 0;
 }
+#endif
