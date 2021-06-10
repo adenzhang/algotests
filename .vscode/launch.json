@@ -7,10 +7,31 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) C++ Launch",
+            "name": "(gdb) Launch ftltest",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/../build-algotests-Debug/algotests",
+            "program": "${workspaceFolder}/build/external/ftl/test/ftltest",
+            "args": [
+                "DefineVariant_tests"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Launch algotests",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceRoot}/build/algotests",
             "args": [],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",

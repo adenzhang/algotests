@@ -1,5 +1,7 @@
-/build-*
+build
+build-*
+cmake-build-*
 *~
 *.swp
-/tmp/
+tmp/
 *.o
